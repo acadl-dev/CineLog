@@ -18,8 +18,8 @@ import { TextInput as TIcon } from 'react-native-paper';
 
 
 export default function RegisterScreen() {
-  const { showSnackbar } = useSnackbar();
-  const { signUp, isLoading } = useSession();
+  const { showSnackbar } = useSnackbar() as { showSnackbar: any };
+  const { signUp, isLoading } = useSession() as { signUp: any, isLoading: boolean };
   const router = useRouter();
   const [securityState, setSecurityState] = useState(true)
   const [email, setEmail] = useState('');
@@ -43,12 +43,12 @@ export default function RegisterScreen() {
                   keyboardType="email-address"
                   label="E-mail"
                   value={email}
-                  onChangeText={(text) => setEmail(text)}
+                  onChangeText={(text: string) => setEmail(text)}
                 />
               </View>
               <View>
                 <TextInput
-                  onChangeText={(text) => setPassword(text)}
+                  onChangeText={(text: string) => setPassword(text)}
                   value={password}
                   mode="flat"
                   label="Password"

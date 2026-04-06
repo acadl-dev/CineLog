@@ -29,6 +29,7 @@ export default function HomeScreen() {
               ]}
             />
             <Searchbar
+              style={{ margin: 10, backgroundColor: theme.colors.secondary  }}
               placeholder="Buscar filme..."
               value={query}
               onChangeText={(text) => {
@@ -36,16 +37,19 @@ export default function HomeScreen() {
                 setSearch(text);
                 setPage(1);
               }}
-              style={{ margin: 10 }}
+              
             />
             {
 
               <FlatList
+                style={{
+                backgroundColor: theme.colors.tertiary,
+              }}
                 data={movies}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                   <ListItem
-                    color={theme.colors.secondary}
+                    color={theme.colors.tertiary}
                     title={item.title || item.original_title}
                     subtitle={item.release_date}
                     poster={getPoster(item.poster_path)}
