@@ -9,3 +9,5 @@ export { default as Snackbar } from './Snackbar';
 export { default as Text } from './Text';
 export { default as TextInput } from './TextInput';
 export { default as View } from './View';
+export { default as SwitchGroup } from './SwitchGroup';
+export { default as Switch } from './Switch';

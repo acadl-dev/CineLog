@@ -28,7 +28,7 @@ const ForgotPassword = ({ forgotPassword, hideModal, showSnackbar }) => {
             }}
             style={styles.button}
             mode="contained"
-            >Enviar link de recuperação</Button>
+            ><Text>Enviar link de recuperação</Text></Button>
         </View>
 }
 

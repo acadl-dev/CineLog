@@ -38,7 +38,8 @@ const useMovies = () => {
     page,
     listMovies,
     setPage,
-    setSearch
+    setSearch,
+    search
   };
 };
 

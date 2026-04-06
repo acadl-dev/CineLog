@@ -3,19 +3,22 @@ import useMovies from '@/hooks/useMovies';
 import { useSession } from '@/providers/SessionContext';
 import { getPoster } from '@/services/API/tmdb';
 import { useRouter } from 'expo-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { useTheme } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
+
 
 export default function HomeScreen() {
   const { signOut } = useSession() as { signOut: any };
   const router = useRouter();
   const theme = useTheme();
-  const { movies, page, listMovies, setPage } = useMovies()  as { movies: any[], page: any, setPage: any, listMovies: any };
+  const { movies, page, listMovies, setPage, setSearch, search } = useMovies()  as { movies: any[], page: any, setPage: any, listMovies: any, setSearch: any, search: any };
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     listMovies();
-  }, [page]);
+  }, [page, search]);
 
   return  <>
             <Appbar 
@@ -25,6 +28,16 @@ export default function HomeScreen() {
                 { name: 'logout', onPress: () => signOut() },
               ]}
             />
+            <Searchbar
+              placeholder="Buscar filme..."
+              value={query}
+              onChangeText={(text) => {
+                setQuery(text);
+                setSearch(text);
+                setPage(1);
+              }}
+              style={{ margin: 10 }}
+            />
             {
 
               <FlatList
@@ -33,9 +46,11 @@ export default function HomeScreen() {
                 renderItem={({ item }) => (
                   <ListItem
                     color={theme.colors.secondary}
-                    title={item.title}
+                    title={item.title || item.original_title}
                     subtitle={item.release_date}
                     poster={getPoster(item.poster_path)}
+                    onPress={() => alert("Press")}
+                    onLongPress={() => alert("Press mais tempo")}
                   />
                 )}
                 onEndReached={() => setPage(prev => prev + 1)}

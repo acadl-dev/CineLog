@@ -30,7 +30,8 @@ export const searchMovies = async (query, page = 1) => {
       params: {
         api_key: API_KEY,
         query: query,
-        page: page
+        page: page,
+        language: "pt-BR"
       }
     });
 
@@ -40,6 +41,7 @@ export const searchMovies = async (query, page = 1) => {
     console.error("Erro ao buscar filmes:", error);
     return { results: [] };
   }
+
 };
 
 export const getMovieDetails = async (id) => {

@@ -15,6 +15,7 @@ import {
 } from 'react-native-safe-area-context';
 
 import { useEffect } from 'react';
+import { ThemeProvider } from '@/providers/ThemeContext';
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -57,7 +58,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return  <SessionProvider>
-            <PaperProvider theme={colorScheme === 'dark' ? Themes.dark : Themes.light}>
+            <ThemeProvider>
               <SafeAreaProvider>
                 <SnackbarProvider>
                   <ModalProvider>
@@ -65,6 +66,6 @@ export default function RootLayout() {
                   </ModalProvider>
                 </SnackbarProvider>
               </SafeAreaProvider>
-            </PaperProvider>
+            </ThemeProvider>
           </SessionProvider>
 }
