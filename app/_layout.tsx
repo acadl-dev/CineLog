@@ -6,14 +6,15 @@ import {
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { ModalProvider } from '@/providers/ModalContext';
 import { SessionProvider, useSession } from '@/providers/SessionContext';
+import { SnackbarProvider } from '@/providers/SnackbarContext';
 import Themes from '@/services/Themes';
 import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
 
 import { useEffect } from 'react';
-import { SnackbarProvider } from '@/providers/SnackbarContext';
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -58,9 +59,11 @@ export default function RootLayout() {
   return  <SessionProvider>
             <PaperProvider theme={colorScheme === 'dark' ? Themes.dark : Themes.light}>
               <SafeAreaProvider>
-                 <SnackbarProvider>
-                  <InitialLayout />
-                 </SnackbarProvider>
+                <SnackbarProvider>
+                  <ModalProvider>
+                    <InitialLayout />
+                  </ModalProvider>
+                </SnackbarProvider>
               </SafeAreaProvider>
             </PaperProvider>
           </SessionProvider>

@@ -22,7 +22,7 @@ const Auth = {
     },
     forgotPassword: async (email) => {
         return await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: "https://citysport-26e1-3.supabase.co/auth/v1/callback",
+            redirectTo: "https://at-react-native.supabase.co/auth/v1/callback",
         });
     },
 }

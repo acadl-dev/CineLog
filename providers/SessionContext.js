@@ -29,7 +29,7 @@ export function SessionProvider({ children }) {
                     return error;
                 }
             } else {
-                await Storage.saveData("@citysport_session", data.user);
+                await Storage.saveData("@cinelog_session", data.user);
                 loadUser();
                 return "Login realizado com sucesso!";
             }
@@ -95,7 +95,7 @@ export function SessionProvider({ children }) {
         try {
             Auth.signOut();
             setUser(null);
-            Storage.clearData("@citysport_session");
+            Storage.clearData("@cinelog_session");
         } catch (e) {
             console.error(e);
         }
@@ -103,7 +103,7 @@ export function SessionProvider({ children }) {
 
     const loadUser = async () => {
         try {
-            const _user = await Storage.loadData("@citysport_session");
+            const _user = await Storage.loadData("@cinelog_session");
             setUser(_user)
             setIsLoading(false);
         } catch (e) {

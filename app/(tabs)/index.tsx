@@ -1,13 +1,21 @@
-import { Appbar, FAB } from '@/components/customs';
+import { Appbar, FAB, ListItem } from '@/components/customs';
+import useMovies from '@/hooks/useMovies';
 import { useSession } from '@/providers/SessionContext';
+import { getPoster } from '@/services/API/tmdb';
 import { useRouter } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { useEffect } from 'react';
+import { StyleSheet, FlatList } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
 export default function HomeScreen() {
-    const { signOut } = useSession() as { signOut: any };
+  const { signOut } = useSession() as { signOut: any };
   const router = useRouter();
   const theme = useTheme();
+  const { movies, page, listMovies, setPage } = useMovies()  as { movies: any[], page: any, setPage: any, listMovies: any };
+
+  useEffect(() => {
+    listMovies();
+  }, [page]);
 
   return  <>
             <Appbar 
@@ -17,6 +25,25 @@ export default function HomeScreen() {
                 { name: 'logout', onPress: () => signOut() },
               ]}
             />
+            {
+
+              <FlatList
+                data={movies}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => (
+                  <ListItem
+                    color={theme.colors.secondary}
+                    title={item.title}
+                    subtitle={item.release_date}
+                    poster={getPoster(item.poster_path)}
+                  />
+                )}
+                onEndReached={() => setPage(prev => prev + 1)}
+                onEndReachedThreshold={0.5}
+              />
+
+              
+            }
             <FAB 
               icon="plus"
               color= "white"
