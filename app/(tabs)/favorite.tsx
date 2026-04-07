@@ -1,28 +1,28 @@
 import { Appbar, FAB, ListItem } from '@/components/customs';
-import useMovies from '@/hooks/useMovies';
+import useFavorites from '@/hooks/useFavorites';
 import { useSession } from '@/providers/SessionContext';
 import { getPoster } from '@/services/API/tmdb';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
-import { useTheme, Searchbar } from 'react-native-paper';
+import { Searchbar, useTheme } from 'react-native-paper';
 
 
-
-export default function HomeScreen() {
+export default function FavoritesScreen() {
   const { signOut } = useSession() as { signOut: any };
   const router = useRouter();
   const theme = useTheme();
-  const { movies, page, listMovies, setPage, setSearch, search } = useMovies()  as { movies: any[], page: any, setPage: any, listMovies: any, setSearch: any, search: any };
+  const {  favorites, loading, listFavorites, setPage, setLimit, setSearch, page } = useFavorites()  as { favorites: any[], loading: any, listFavorites: any, setPage: any, setLimit: any, setSearch: any, page: any };
   const [query, setQuery] = useState('');
+  
 
   useEffect(() => {
-    listMovies();
-  }, [page, search]);
+    listFavorites();
+  }, [page]);
 
   return  <>
             <Appbar 
-              title="Home"
+              title="Favoritos"
               icons={[
                 { name: 'cog-outline', onPress: () => router.push('/settings')   },
                 { name: 'logout', onPress: () => signOut() },
@@ -45,11 +45,11 @@ export default function HomeScreen() {
                 style={{
                 backgroundColor: theme.colors.tertiary,
               }}
-                data={movies}
+                data={favorites}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                   <ListItem
-                    title={item.title || item.original_title}
+                    title={item.title}
                     subtitle={item.release_date}
                     poster={getPoster(item.poster_path)}
                     onPress={() => alert("Press")}

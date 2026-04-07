@@ -8,7 +8,7 @@ const light = {
     colors: {
         ...MD3LightTheme.colors,
         primary: '#132862',
-        secondary: '#34b3ba',
+        secondary: '#b9bebe',
         tertiary: '#eef3f3',
     },
 };
@@ -19,7 +19,7 @@ const dark = {
         ...MD3DarkTheme.colors,
         primary: '#132862',
         secondary: '#471daa',
-        tertiary: '#060881',
+        tertiary: '#606064',
     },
 };
 
