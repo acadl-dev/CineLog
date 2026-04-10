@@ -1,4 +1,4 @@
-import { Appbar, FAB, ListItem } from '@/components/customs';
+import { Appbar, ListItem } from '@/components/customs';
 import useMovies from '@/hooks/useMovies';
 import { useSession } from '@/providers/SessionContext';
 import { getPoster } from '@/services/API/tmdb';
@@ -15,6 +15,7 @@ export default function HomeScreen() {
   const theme = useTheme();
   const { movies, page, listMovies, setPage, setSearch, search } = useMovies()  as { movies: any[], page: any, setPage: any, listMovies: any, setSearch: any, search: any };
   const [query, setQuery] = useState('');
+  const navigate = useRouter();
 
   useEffect(() => {
     listMovies();
@@ -52,17 +53,14 @@ export default function HomeScreen() {
                     title={item.title || item.original_title}
                     subtitle={item.release_date}
                     poster={getPoster(item.poster_path)}
-                    onPress={() => alert("Press")}
+                    onPress={() => router.push({ pathname: '/movie', params: { id: item.id, item: JSON.stringify(item) } })}
                     onLongPress={() => alert("Press mais tempo")}
                   />
                 )}
                 onEndReached={() => setPage(prev => prev + 1)}
                 onEndReachedThreshold={0.5}
-              />
-
-              
+              /> 
             }
-            
           </>;
 }
 
