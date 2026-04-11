@@ -25,7 +25,7 @@ export default function TabTwoScreen() {
                 ...styles.fab,
                 backgroundColor: theme.colors.primary,
               }}
-              onPress={() => router.push('/item')}
+              onPress={() => router.push('/')}
             />
           </>;
 }

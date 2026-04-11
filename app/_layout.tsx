@@ -48,7 +48,6 @@ const InitialLayout = () => {
               <Stack.Screen name="login" options={{ headerShown: false }} />
               <Stack.Screen name="register" options={{ headerShown: false }} />
               <Stack.Screen name="settings" options={{ headerShown: false }} />
-              <Stack.Screen name="item" options={{ headerShown: false }} />
             </Stack>
           <StatusBar style="auto" />
         </>

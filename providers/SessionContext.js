@@ -72,11 +72,12 @@ export function SessionProvider({ children }) {
             setIsLoading(false);
             if (error) {
                 if (error.message) {
+                    console.error(error.message);
                     switch (error.code) {
                         case "email_already_exists":
                             return "Este e-mail já está em uso. Tente outro.";
                         default:
-                            return "Erro ao entrar. Tente novamente mais tarde.";
+                            return "Erro ao criar cadastro. Tente novamente mais tarde.";
 
                     }
                 } else {

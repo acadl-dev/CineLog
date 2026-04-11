@@ -3,7 +3,8 @@ import { useTheme } from '@/providers/ThemeContext';
 import * as React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { Text } from 'react-native-paper';
-import { Switch, View } from '.';
+import Switch from './Switch';
+import View from './View';
 
 
 const SwitchGroup = ({title, options, selected, setSelected, side="right"}) => {

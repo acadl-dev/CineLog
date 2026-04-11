@@ -3,7 +3,7 @@ import { useTheme } from '@/providers/ThemeContext';
 import * as React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { Switch as RnpSwitch, Text } from 'react-native-paper';
-import { View } from '.';
+import View from './View';
 
 const Switch = ({isSwitchOn, onValueChange, label=null, side="right", boxStyle={}}) => {
   const { activeTheme } = useTheme();

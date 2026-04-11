@@ -1,9 +1,7 @@
-import {
-    Button,
-    Text,
-    TextInput,
-    View
-} from '@/components/customs';
+import Button from './Button';
+import Text from './Text';
+import TextInput from './TextInput';
+import View from './View';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 
